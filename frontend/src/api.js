@@ -50,7 +50,7 @@ api.interceptors.response.use(
       isRefreshing = true
 
       try {
-        const res = await api.get("/api/auth/refresh-token")
+        const res = await api.post("/api/auth/refresh-token")
         const newToken = res.data.accessToken
         localStorage.setItem("accessToken", newToken)
         api.defaults.headers.common["Authorization"] = `Bearer ${newToken}`

@@ -10,7 +10,7 @@ authRouter.get("/get-user", authenticate, getUser);
 authRouter.put("/update-profile", authenticate, updateProfile);
 authRouter.put("/change-password", authenticate, changePassword);
 authRouter.post("/become-vendor", authenticate, becomeVendor);
-authRouter.get("/refresh-token", refreshToken);
+authRouter.post("/refresh-token", refreshToken);
 authRouter.post("/logout", logout);
 authRouter.post("/logout-all", authenticate, logoutAll);
 

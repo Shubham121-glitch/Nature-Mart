@@ -49,26 +49,9 @@ export const AdminProvider = ({ children }) => {
         }
         setAdmin(res.data.user)
       } catch (err) {
-        if (err.response?.status === 401) {
-          try {
-            await api.get("/api/auth/refresh-token")
-            const retryRes = await api.get("/api/auth/get-user")
-            if (retryRes.data.user.accountType !== "admin") {
-              setAdmin(null)
-              localStorage.removeItem("accessToken")
-              navigate("/admin/login")
-              return
-            }
-            setAdmin(retryRes.data.user)
-          } catch {
-            setAdmin(null)
-            localStorage.removeItem("accessToken")
-            navigate("/admin/login")
-          }
-        } else {
-          setAdmin(null)
-          navigate("/admin/login")
-        }
+        setAdmin(null)
+        localStorage.removeItem("accessToken")
+        navigate("/admin/login")
       } finally {
         setLoading(false)
       }

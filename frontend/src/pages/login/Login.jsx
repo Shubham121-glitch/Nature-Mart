@@ -8,7 +8,9 @@ import { useUser } from '../../context/userContext'
 import { Mail, Lock, Leaf, Eye, EyeOff, ArrowRight } from 'lucide-react'
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm()
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+    defaultValues: { email: '', password: '', rememberMe: false }
+  })
   const navigate = useNavigate()
   const { user, setUser, fetchUserData } = useUser()
   const [showPassword, setShowPassword] = useState(false)
@@ -19,10 +21,15 @@ const Login = () => {
     }
   }, [user, navigate])
 
-  const onSubmit = async (data) => {
+  const onSubmit = async ({ rememberMe, ...data }) => {
     try {
       const res = await api.post('/api/auth/login', data)
       localStorage.setItem('accessToken', res.data.accessToken)
+      if (rememberMe) {
+        localStorage.setItem('rememberMe', 'true')
+      } else {
+        localStorage.removeItem('rememberMe')
+      }
       setUser(res.data.user)
       await fetchUserData()
       toast.success(res.data.message || 'Welcome back!')
@@ -107,11 +114,11 @@ const Login = () => {
 
           <div className="login-options">
             <label className="remember-me" id="remember-me-label">
-              <input type="checkbox" id="remember-me" />
+              <input type="checkbox" id="remember-me" {...register('rememberMe')} />
               <span className="checkmark"></span>
               <span>Remember me</span>
             </label>
-            <a href="#" className="forgot-password">Forgot password?</a>
+            <Link to="/forgot-password" className="forgot-password">Forgot password?</Link>
           </div>
 
           <button
