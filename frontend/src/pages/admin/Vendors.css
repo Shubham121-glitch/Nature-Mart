@@ -1,0 +1,145 @@
+.admin-vendors-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-vendors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.admin-vendor-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: var(--transition-fast);
+}
+
+.admin-vendor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-vendor-card.vendor-banned {
+  opacity: 0.6;
+}
+
+.admin-vendor-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-vendor-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--secondary-500), var(--secondary-600));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.admin-vendor-identity {
+  flex: 1;
+}
+
+.admin-vendor-identity h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.admin-vendor-identity p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.admin-vendor-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.admin-vendor-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px;
+  background: var(--bg-surface);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.admin-vendor-stat svg {
+  color: var(--text-tertiary);
+}
+
+.admin-vendor-stat .stat-value {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.admin-vendor-stat .stat-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-vendor-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  font-family: var(--font-primary);
+}
+
+.admin-btn-outline {
+  background: none;
+  border: 1px solid;
+}
+
+.admin-btn-outline.danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.admin-btn-outline.danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.admin-btn-outline.success {
+  border-color: var(--primary-500);
+  color: var(--primary-500);
+}
+
+.admin-btn-outline.success:hover {
+  background: var(--primary-500alpha);
+}
+
+@media (max-width: 640px) {
+  .admin-vendors-grid {
+    grid-template-columns: 1fr;
+  }
+}

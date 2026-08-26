@@ -1,0 +1,237 @@
+.admin-users-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.admin-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.admin-search-box svg {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.admin-search-box input {
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+  width: 100%;
+  font-family: var(--font-primary);
+}
+
+.admin-search-box input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.admin-filter-select {
+  padding: 10px 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: var(--font-primary);
+  outline: none;
+  cursor: pointer;
+}
+
+.admin-table-wrapper {
+  padding: 0;
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table thead {
+  background: var(--bg-surface);
+}
+
+.admin-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.admin-table tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr.banned-row {
+  opacity: 0.6;
+}
+
+.admin-table-loading,
+.admin-table-empty {
+  text-align: center;
+  padding: 48px !important;
+  color: var(--text-tertiary);
+}
+
+.admin-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-cell-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.admin-role-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.role-user { background: #dbeafe; color: #1e40af; }
+.role-vendor { background: #fef3c7; color: #92400e; }
+.role-admin { background: #ede9fe; color: #5b21b6; }
+
+[data-theme="dark"] .role-user { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+[data-theme="dark"] .role-vendor { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+[data-theme="dark"] .role-admin { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+
+.admin-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.admin-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.admin-action-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.admin-action-btn.danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.admin-action-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.admin-action-btn.success {
+  color: var(--primary-500);
+  border-color: var(--primary-500);
+}
+
+.admin-action-btn.success:hover {
+  background: var(--primary-500alpha);
+}
+
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.admin-pagination button {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--glass-bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.admin-pagination button:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.admin-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.admin-pagination span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .admin-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-search-box {
+    max-width: none;
+  }
+
+  .admin-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .admin-table {
+    min-width: 600px;
+  }
+}
