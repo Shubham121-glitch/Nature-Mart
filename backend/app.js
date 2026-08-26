@@ -8,6 +8,7 @@ import wishlistRouter from "./routes/wishlist.routes.js"
 import reviewRouter from "./routes/review.routes.js"
 import notificationRouter from "./routes/notification.routes.js"
 import adminRouter from "./routes/admin.routes.js"
+import chatRouter from "./routes/chat.routes.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import path from "path"
@@ -35,6 +36,7 @@ app.use("/api/wishlist", wishlistRouter)
 app.use("/api/reviews", reviewRouter)
 app.use("/api/notifications", notificationRouter)
 app.use("/api/admin", adminRouter)
+app.use("/api/chat", chatRouter)
 
 app.use((err, req, res, next) => {
   console.error(err.stack)

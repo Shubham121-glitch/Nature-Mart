@@ -5,11 +5,9 @@ import {
   Trash2, ToggleLeft, ToggleRight, ChevronDown, RefreshCw
 } from "lucide-react"
 import { useUser } from "../context/userContext"
+import api from "../api"
 import "./chatbot.css"
 
-const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY
-const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-const MODEL = "openrouter/free"
 const STORAGE_KEY = "hortx-chatbot-conversations"
 const MAX_SAVED = 50
 
@@ -274,14 +272,9 @@ export default function ChatbotWidget() {
   }
 
   const callAPI = async (apiMessages) => {
-    const res = await fetch(OPENROUTER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${OPENROUTER_API_KEY}` },
-      body: JSON.stringify({ model: MODEL, messages: apiMessages, max_tokens: 1024 }),
-    })
-    const data = await res.json()
-    if (data.error) throw new Error(data.error.message || "API request failed")
-    return data.choices?.[0]?.message?.content || "Sorry, I couldn't generate a response."
+    const res = await api.post("/api/chat", { messages: apiMessages })
+    if (res.data.error) throw new Error(res.data.message || "API request failed")
+    return res.data.reply
   }
 
   const sendMessage = async (overrideText) => {
